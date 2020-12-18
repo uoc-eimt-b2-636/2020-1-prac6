@@ -1,0 +1,294 @@
+[
+    {
+        "id": "5cb53ea9.7de57",
+        "type": "tab",
+        "label": "Prac6",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "23c4533a.7408ec",
+        "type": "mqtt in",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "topic": "test",
+        "qos": "2",
+        "broker": "e3bad48b.f2f1e8",
+        "x": 302,
+        "y": 247,
+        "wires": [
+            [
+                "ead03c55.72e76",
+                "7422f48d.f3f34c"
+            ]
+        ]
+    },
+    {
+        "id": "ead03c55.72e76",
+        "type": "debug",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1187.9999618530273,
+        "y": 84.00000286102295,
+        "wires": []
+    },
+    {
+        "id": "d797863d.2f8438",
+        "type": "switch",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "property": "payload.Transcript",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "eco",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "verde",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "sonido",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "rojo",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 603,
+        "y": 403,
+        "wires": [
+            [
+                "2b125210.84ee1e"
+            ],
+            [
+                "d83c39f6.e36b68"
+            ],
+            [
+                "8f5ad2f9.5a266"
+            ],
+            [
+                "dcf9822a.51537"
+            ]
+        ]
+    },
+    {
+        "id": "f4f67d93.6ebc5",
+        "type": "tcp out",
+        "z": "5cb53ea9.7de57",
+        "host": "",
+        "port": "",
+        "beserver": "reply",
+        "base64": false,
+        "end": false,
+        "name": "",
+        "x": 1316.0000114440918,
+        "y": 284.00000953674316,
+        "wires": []
+    },
+    {
+        "id": "d83c39f6.e36b68",
+        "type": "change",
+        "z": "5cb53ea9.7de57",
+        "name": "green",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.Transcript",
+                "pt": "msg",
+                "from": "verde",
+                "fromt": "str",
+                "to": "g",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 874,
+        "y": 399,
+        "wires": [
+            [
+                "e7ed009e.8457c"
+            ]
+        ]
+    },
+    {
+        "id": "2b125210.84ee1e",
+        "type": "change",
+        "z": "5cb53ea9.7de57",
+        "name": "echo",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.Transcript",
+                "pt": "msg",
+                "from": "eco",
+                "fromt": "str",
+                "to": "e",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 877,
+        "y": 328,
+        "wires": [
+            [
+                "e7ed009e.8457c"
+            ]
+        ]
+    },
+    {
+        "id": "8f5ad2f9.5a266",
+        "type": "change",
+        "z": "5cb53ea9.7de57",
+        "name": "sonido",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.Transcript",
+                "pt": "msg",
+                "from": "sonido",
+                "fromt": "str",
+                "to": "z",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 888,
+        "y": 462,
+        "wires": [
+            [
+                "e7ed009e.8457c"
+            ]
+        ]
+    },
+    {
+        "id": "bdcc3433.4c0148",
+        "type": "tcp in",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "server": "server",
+        "host": "",
+        "port": "5001",
+        "datamode": "stream",
+        "datatype": "buffer",
+        "newline": "",
+        "topic": "test",
+        "base64": false,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "ead03c55.72e76"
+            ]
+        ]
+    },
+    {
+        "id": "7422f48d.f3f34c",
+        "type": "json",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 430,
+        "y": 378,
+        "wires": [
+            [
+                "d797863d.2f8438"
+            ]
+        ]
+    },
+    {
+        "id": "dcf9822a.51537",
+        "type": "change",
+        "z": "5cb53ea9.7de57",
+        "name": "rojo",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.Transcript",
+                "pt": "msg",
+                "from": "rojo",
+                "fromt": "str",
+                "to": "r",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 884,
+        "y": 544,
+        "wires": [
+            [
+                "e7ed009e.8457c"
+            ]
+        ]
+    },
+    {
+        "id": "e7ed009e.8457c",
+        "type": "function",
+        "z": "5cb53ea9.7de57",
+        "name": "",
+        "func": "return {payload: msg.payload.Transcript};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1139,
+        "y": 425,
+        "wires": [
+            [
+                "ead03c55.72e76",
+                "f4f67d93.6ebc5"
+            ]
+        ]
+    },
+    {
+        "id": "e3bad48b.f2f1e8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "34.253.122.64",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
